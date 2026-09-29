@@ -1,0 +1,46 @@
+### 1. Crear Categoría Padre (201 Created)
+POST http://localhost:8080/api/categorias
+Content-Type: application/json
+
+{
+  "nombre": "Analgésicos",
+  "descripcion": "Medicamentos para aliviar dolores y fiebre"
+}
+
+### 2. Intentar crear Categoría duplicada (409 Conflict)
+POST http://localhost:8080/api/categorias
+Content-Type: application/json
+
+{
+  "nombre": "Analgésicos",
+  "descripcion": "Descripción duplicada"
+}
+
+### 3. Crear Producto Hijo asociado a Categoría 1 (201 Created)
+POST http://localhost:8080/api/productos
+Content-Type: application/json
+
+{
+  "categoriaId": 1,
+  "codigoBarras": "7791234567890",
+  "nombre": "Paracetamol 500mg",
+  "descripcionCorta": "Caja x 20 comprimidos",
+  "precioVentaBase": 15.50,
+  "stockMinimo": 10
+}
+
+### 4. Intentar crear Producto con Categoría Inexistente (404 Not Found)
+POST http://localhost:8080/api/productos
+Content-Type: application/json
+
+{
+  "categoriaId": 999,
+  "codigoBarras": "7790000000000",
+  "nombre": "Ibuprofeno 400mg",
+  "descripcionCorta": "Caja x 10 comprimidos",
+  "precioVentaBase": 20.00,
+  "stockMinimo": 5
+}
+
+### 5. Consultar productos por Categoría (200 OK)
+GET http://localhost:8080/api/productos/categoria/1
