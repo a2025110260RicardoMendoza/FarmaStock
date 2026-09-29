@@ -1,0 +1,12 @@
+CREATE ROLE farmastock_db WITH
+    LOGIN
+    CREATEDB
+    SUPERUSER
+    CREATEROLE
+    PASSWORD 'fs1234'
+    INHERIT;
+
+CREATE DATABASE fsdb00 OWNER farmastock_db;
+
+
+
